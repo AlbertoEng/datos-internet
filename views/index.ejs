@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medidor de Energia</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <h1>Medidor de Energia</h1>
+    <h1 style="font-size: 100px;" id='caja'><%= valor %></h1>
+   
+    <script>
+        var socket = io.connect('http://192.168.1.66:3000');
+        socket.on('datos', function (data) {
+            var elem = document.getElementById('caja');
+            elem.innerText = data.valor;
+        });
+    </script>
+</body>
+</html>
